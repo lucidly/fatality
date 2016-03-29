@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{Title}</title>
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,100,400,300italic' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+
+
+        <!-- Masonry: http://masonry.desandro.com/ -->
+        <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+        <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+        
+        <meta name="TitleColor" content="#818080"/>
+        <meta name="AccentColor" content="#a5a1a1"/>
+        <meta name="BackgroundColor" content="#f8f8f8"/>
+        
+        <meta name="color:Border" content="#d7d7d7"/>
+    
+        <style type="text/css">
+
+            body {
+                padding: 0px;
+                margin: 0px;
+                font-family: Roboto;
+                font-size: 100%;
+                font-weight: 300;
+                letter-spacing: 1px;
+                color: {AccentColor};
+                padding-top: 25px;
+                background-color: {BackgroundColor};
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+            
+            a {
+                text-decoration: none;
+                color: {AccentColor};
+                transition: all 0.5s;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                -o-transition: all 0.5s;
+            }
+            
+            a:hover {
+                opacity: 0.6;
+            }
+            
+            strong, b, em {
+                font-weight: 400;
+            }
+            
+            img {
+                max-width: 100%;
+            }
+            
+            ul {
+                padding: 0px;
+            }
+
+            .details {
+                font-size: 0.4em;
+                font-weight: 300;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+
+
+
+
+            /******* MAIN CONTAINER SIZES *******/ 
+
+            /* entire blog width */ 
+            #main {
+                width: 1000px;
+                margin-right: auto;
+                margin-left: auto;
+                position: relative;
+            }
+        
+            /* content excluding header */
+            #content {
+                position: relative;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+            }
+            
+            /* post container */
+            #posts {
+                width: 100%;
+                position: relative;
+                top: 0px;
+                left: 0px;
+                {block:PermalinkPage}
+                    width: 800px;
+                    margin: 0 auto;
+                {/block:PermalinkPage}
+            }
+
+
+
+
+
+            /******* HEADER CONTENTS *******/    
+
+            /* header container */
+            #header {
+                text-align: center;
+            }
+
+            /* header title */        
+            h1 * {
+                color: {TitleColor};
+                font-weight: 100;
+                font-size: 3.5em;
+                line-height: 1em;
+                letter-spacing: 0.2em;
+                margin-bottom: 0px;
+                text-transform: uppercase;
+            }
+            
+            /* header description */
+            #description {
+                margin-bottom: 25px;
+                font-size: 0.9em;
+            }
+            
+            /* navigation links */
+            nav ul li {
+                display: inline;
+            }
+            
+            nav ul li:after {
+                content: " - ";
+                padding: 10px;
+            }
+            
+            nav ul li:last-child:after {
+                content: "";
+            }
+            
+            nav ul li a {
+                color: {AccentColor};
+                font-size: 1em;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                padding-bottom: 5px;
+            }
+
+
+
+
+            /******* POSTS *******/
+
+            .post {
+                border: 1px solid {color:Border};
+                padding: 25px;
+                list-style-type: none;
+                margin-bottom: 10px;
+                background-color: #fff;
+                font-size: 0.8em;
+                {block:IndexPage}
+                width: calc(50% - 10px);
+                {/block:IndexPage}
+                {block:PermalinkPage}
+                width: 100%;
+                margin: 0px;
+                {/block:PermalinkPage}
+            }
+
+            /* titles */
+            h2 {
+                padding: 0px;
+                margin: 0px;
+                text-align: center;
+                font-weight: normal;
+                text-transform: uppercase;
+                letter-spacing: 10px;
+                font-size: 1.8em;
+                font-weight: 300;
+            }
+            
+            /* dates */
+            h3 {
+                font-weight: normal;
+                text-transform: uppercase;
+                font-size: 0.9em;
+                letter-spacing: 3px;
+                {block:Date}
+                text-align: center;
+                {block:Date}
+                font-weight: 300;
+            }
+            
+            /* text */
+            article {
+                line-height: 1.5em;
+            }
+
+            /* list indention in posts */
+            .post li {
+                padding: 0px 5px;
+                margin-left: 25px;
+            }
+            
+            /* padding for photo posts and other */
+            .photo, .photoset, .video, .audio {
+                padding: 10px;
+            }
+            
+            .photoset footer {
+                padding-bottom: 25px;
+            }
+
+            .media-wrapper {
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+            }
+
+            .media-wrapper iframe {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+            }
+
+            .audio-wrapper {
+                width: 100%;
+                border: 1px solid {color:Border};
+                position: relative;
+            }
+
+            .asker-question, .answerer-answer {
+                padding-left: 10px;
+            }
+
+            .chat ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .caption {
+                text-align: center;
+            }
+
+            /* images in text posts should match width of text post */
+            .text img {
+                max-width: 100%;
+            }
+            
+            /* quote text in quote posts */
+            .quoted {
+                font-size: 2em;
+            }
+
+            /* source in quote posts */
+            .source {
+                text-align: right;
+                display: block;
+                margin: 10px 0px;
+            }
+
+            /* link in link post */
+            .linked {
+                display: block;
+                text-align: center;
+                font-size: 3em;
+                font-weight: 100;
+                text-transform: uppercase;
+            }
+
+
+
+
+            /******* PHOTO POST HOVER *******/
+
+            /* hidden hover and contents */
+            .hover {
+                margin: 0;
+                padding: 25px;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                visibility: hidden;
+                background-color: #fff;
+                transition: all 0.5s ease;
+               -moz-transition: all 0.5s ease;
+               -webkit-transition: all 0.5s ease;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                overflow: auto;
+            }
+
+            /* vertical align hover contents */
+            .hover-content {
+                 position: relative;
+                 top: 50%;
+                 transform: translateY(-50%);
+            }
+            
+            /* show on hover */
+           .post:hover .hover {
+                opacity: 1;
+                visibility: visible;
+            }
+
+
+
+
+            /******* POST FOOTER *******/
+            .post footer {
+                text-align: center;
+                display: inline-block;
+                width: 100%;
+                {block:PermalinkPage}
+                padding-bottom: 20px;
+                {/block:PermalinkPage}
+            }
+
+            /* note count and permalink */
+            .permalink {
+                text-transform: uppercase;
+                display: block;
+                letter-spacing: 2px;
+            }
+
+            /* like and reblog buttons container */
+            .buttons {
+                text-align: center;
+                display: inline-block;
+                border-bottom: 1px solid {color:Border};
+            }
+            
+            /* like and reblog buttons */
+            .reblog_button, .like_button {
+                display: block;
+                float: left;
+                margin: 5px;
+            }
+            
+            /* tags */
+            .tags {
+                list-style-type: none;
+                list-style-position: inside;
+                display: block;
+                margin: 0;
+            }
+            
+            .tags li {
+                display: inline;
+                color: {TitleColor};
+                margin: 0px;
+                padding: 0px;
+            }
+            
+            .tags li:after {
+                content: ", ";
+            }
+            
+            .tags li:last-child:after {
+                content: "";
+            }
+
+            /* notes */
+            .notes {
+                list-style-type: none;
+                display: inline;
+            }
+            
+            .notes img {
+                vertical-align: middle;
+                padding-right: 5px;
+            }
+            
+            .notes li {
+                padding: 10px;
+            }
+
+
+
+
+
+            /******* MAIN FOOTER *******/
+            #footer {
+                text-align: center;
+                padding-bottom: 25px;
+                font-size: 2em;
+                font-weight: 100;
+                padding-top: 50px;
+            }
+            
+            #footer a {
+                color: {color:Border};
+            } 
+
+
+
+
+
+            /******* RESPONSIVENESS *******/
+            @media (max-width: 1000px) {
+                #main {
+                    width: calc(100% - 4%);
+                    margin: 2%;
+                }
+            }
+            
+            @media (max-width: 600px) {
+                .post {
+                    width: 100%;
+                }
+                
+                #posts, #content {
+                    width: 100%;
+                }
+            }
+
+
+
+
+
+            /* USER CSS */
+            {CustomCSS}
+        </style>
+    </head>
+    
+    
+    <body>
+        <main id="main">
+        
+            <!-- HEADER -->
+            <section id="header">  
+                <h1><a href="{BlogURL}">{Title}</a></h1>
+                <p id="description">{Description}</p>   
+                <nav>
+                    {block:HasPages}
+                        <ul id="pages">
+                            {block:Pages}
+                                <li><a href="{URL}">{Label}</a></li>
+                            {/block:Pages}
+                        </ul>
+                    {/block:HasPages}
+                </nav>
+            </section>
+            <!-- END HEADER -->
+            
+            
+            <!-- BEGIN MAIN CONTENT -->
+            <section id="content">
+                
+                <!-- BEGIN POSTS -->
+                <ul id="posts">
+                {block:Posts}
+            
+            
+                    {block:Text}
+                    <!-- TEXT POST -->
+                    <li class="post text">
+                        {block:Title}<h2>{Title}</h2>{/block:Title}
+                        {block:Date}<h3>{Month} {DayOfMonth}</h3>{/block:Date}
+                        <article>{Body}</article>
+
+                        <footer>
+                            <div class="buttons">
+                                {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                            </div>
+
+                            <p class="permalink">
+                                {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                            </p>
+                            
+                            {block:HasTags}
+                            <ul class="tags">
+                                {block:Tags} 
+                                 <li><a href="{TagURL}">#{Tag}</a></li>
+                                {/block:Tags}
+                            </ul>
+                            {/block:HasTags}
+                        </footer>
+                    <!-- END TEXT POST -->    
+                    {/block:Text}
+                
+                    
+                    {block:Photo}
+                    <!-- PHOTO POST -->
+                        <li class="post photo">
+                            <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+
+                            {block:IndexPage}   
+                            <div class="hover">   
+                            <div class="hover-content">
+                            {/block:IndexPage}
+                            
+                            {block:Caption}
+                            <div class="caption">{Caption}</div>
+                            {/block:Caption}
+
+                            <footer>
+                                <div class="buttons">
+                                    {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                                </div>
+
+                                <p class="permalink">
+                                    {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                                </p>
+                                
+                                {block:HasTags}
+                                <ul class="tags">
+                                    {block:Tags} 
+                                     <li><a href="{TagURL}">#{Tag}</a></li>
+                                    {/block:Tags}
+                                </ul>
+                                {/block:HasTags}
+                            </footer>
+                            
+                            {block:IndexPage}
+                            </div>
+                            </div>
+                            {/block:IndexPage}       
+                    <!-- END PHOTO POST -->
+                    {/block:Photo}
+
+                
+                    {block:Panorama}
+                    <!-- PANORAMA POST -->    
+                        <li class="post panorama">
+                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />
+
+                            {block:IndexPage}   
+                            <div class="hover">   
+                            <div class="hover-content">
+                            {/block:IndexPage}
+                            
+                            {block:Caption}
+                            <div class="caption">{Caption}</div>
+                            {/block:Caption}
+
+                            <footer>
+                                <div class="buttons">
+                                    {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                                </div>
+
+                                <p class="permalink">
+                                    {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                                </p>
+                                
+                                {block:HasTags}
+                                <ul class="tags">
+                                    {block:Tags} 
+                                     <li><a href="{TagURL}">#{Tag}</a></li>
+                                    {/block:Tags}
+                                </ul>
+                                {/block:HasTags}
+                            </footer>
+                            
+                            {block:IndexPage}
+                            </div>
+                            </div>
+                            {/block:IndexPage} 
+                    <!-- END PANORAMA POST -->
+                    {/block:Panorama}
+                   
+                
+                    {block:Photoset}
+                    <!-- PHOTOSET POST -->   
+                        <li class="post photoset">
+                            {Photoset}
+
+                            {block:Caption}
+                            <div class="caption">{Caption}</div>
+                            {/block:Caption}
+
+                            <footer>
+                                <div class="buttons">
+                                    {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                                </div>
+
+                                <p class="permalink">
+                                    {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                                </p>
+                                
+                                {block:HasTags}
+                                <ul class="tags">
+                                    {block:Tags} 
+                                     <li><a href="{TagURL}">#{Tag}</a></li>
+                                    {/block:Tags}
+                                </ul>
+                                {/block:HasTags}
+                            </footer> 
+                    <!-- END PHOTOSET POST -->
+                    {/block:Photoset}
+                
+                
+                    {block:Quote}
+                     <!-- QUOTE POST -->
+                        <li class="post quote">
+                            <blockquote class="quoted">"{Quote}"</blockquote>
+                            {block:Source}
+                                <div class="source">&mdash; {Source}</div>
+                            {/block:Source}
+
+                            <footer>
+                                <div class="buttons">
+                                    {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                                </div>
+
+                                <p class="permalink">
+                                    {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                                </p>
+                                
+                                {block:HasTags}
+                                <ul class="tags">
+                                    {block:Tags} 
+                                     <li><a href="{TagURL}">#{Tag}</a></li>
+                                    {/block:Tags}
+                                </ul>
+                                {/block:HasTags}
+                            </footer>
+                    <!-- END QUOTE POST -->
+                    {/block:Quote}
+                
+                
+                    {block:Link}
+                    <!-- LINK POST -->
+                        <li class="post link">
+                            <a href="{URL}" class="linked" {Target}>{Name}</a>
+                            {block:Description}
+                                <div class="caption">{Description}</div>
+                            {/block:Description}
+                            {block:Author}
+                                <div class="caption">{Author}</div>
+                            {/block:Author}
+                            {block:Excerpt}
+                                <div class="caption">{Excerpt}</div>
+                            {/block:Excerpt}
+
+                            <footer>
+                                <div class="buttons">
+                                    {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                                </div>
+
+                                <p class="permalink">
+                                    {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                                </p>
+                                
+                                {block:HasTags}
+                                <ul class="tags">
+                                    {block:Tags} 
+                                     <li><a href="{TagURL}">#{Tag}</a></li>
+                                    {/block:Tags}
+                                </ul>
+                                {/block:HasTags}
+                            </footer>
+                    <!-- END LINK POST -->
+                    {/block:Link}
+                    
+                
+                    {block:Chat}
+                    <!-- CHAT POST -->
+                        <li class="post chat">
+                            {block:Title}
+                                <h2><a href="{Permalink}">{Title}</a></h2>
+                                {block:Date}
+                                    <h3>{Month} {DayOfMonth}</h3>
+                                {/block:Date}
+                            {/block:Title}
+                    
+                            <article>
+                            <ul class="chat">
+                                {block:Lines}
+                                    <li class="{Alt} user_{UserNumber}">
+                                        {block:Label}
+                                            <span class="label">{Label}</span>
+                                        {/block:Label}
+                                    {Line}
+                                    </li>
+                                {/block:Lines}
+                            </ul>
+                            </article>
+
+                            <footer>
+                                <div class="buttons">
+                                    {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                                </div>
+
+                                <p class="permalink">
+                                    {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                                </p>
+                                
+                                {block:HasTags}
+                                <ul class="tags">
+                                    {block:Tags} 
+                                     <li><a href="{TagURL}">#{Tag}</a></li>
+                                    {/block:Tags}
+                                </ul>
+                                {/block:HasTags}
+                            </footer>
+                    <!-- END CHAT POST -->        
+                    {/block:Chat}
+          
+          
+                    {block:Video}
+                    <!-- VIDEO POST -->
+                        <li class="post video">
+                            <div class="media-wrapper">
+                                {VideoEmbed-500}
+                            </div>
+
+                            {block:Caption}
+                            <div class="caption">{Caption}</div>
+                            {/block:Caption}
+
+                            {block:PlayCount}
+                            <div class="caption">{PlayCountWithLabel}</div>
+                            {/block:PlayCount}
+
+                            <footer>
+                                <div class="buttons">
+                                    {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                                </div>
+
+                                <p class="permalink">
+                                    {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                                </p>
+                                
+                                {block:HasTags}
+                                <ul class="tags">
+                                    {block:Tags} 
+                                     <li><a href="{TagURL}">#{Tag}</a></li>
+                                    {/block:Tags}
+                                </ul>
+                                {/block:HasTags}
+                            </footer>
+                    <!-- END VIDEO POST -->
+                    {/block:Video}
+
+
+                    {block:Audio}
+                    <!-- AUDIO POST -->
+                        <li class="post audio">
+                            {block:AudioEmbed}    
+                            <div class="media-wrapper">{AudioEmbed}</div>
+                            {/block:AudioEmbed}
+
+                            {block:AudioPlayer}
+                            <div class="audio-wrapper">
+                                {AudioPlayerWhite}
+                            </div>
+                            {/block:AudioPlayer}
+
+                            {block:ExternalAudio}
+                            <p class="caption">{ExternalAudioURL}</p>
+                            {/block:ExternalAudio}
+
+                            {block:PlayCount}
+                            <p class="caption">{PlayCountWithLabel}</p>
+                            {/block:PlayCount}
+
+                            {block:Caption}
+                            <div class="caption">{Caption}</div>
+                            {/block:Caption}
+
+                            <footer>
+                                <div class="buttons">
+                                    {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                                </div>
+
+                                <p class="permalink">
+                                    {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                                </p>
+                                
+                                {block:HasTags}
+                                <ul class="tags">
+                                    {block:Tags} 
+                                     <li><a href="{TagURL}">#{Tag}</a></li>
+                                    {/block:Tags}
+                                </ul>
+                                {/block:HasTags}
+                            </footer>
+                    <!-- END AUDIO POST -->
+                    {/block:Audio}
+
+
+                    {block:Answer}
+                    <!-- ANSWER POST -->
+                    <li class="post answer">
+                        <p class="question">
+                            <p class="asker"><strong>{Asker}</strong> asked:</p>
+                            <p class="asker-question">{Question}</p>
+                        </p>
+                    
+                        {block:Answerer}
+                            <p class="answer">
+                                <p class="answerer"><strong>{Answerer}</strong></a> answered:</p>
+                                <p class="answerer-answer">{Answer}</p>
+                            </p>
+                        {/block:Answerer}
+                    
+                        <p class="replies">
+                            {Replies}
+                        </p>
+
+                        <footer>
+                            <div class="buttons">
+                                {LikeButton size="15" color="grey"}{ReblogButton size="15" color="grey"}
+                            </div>
+
+                            <p class="permalink">
+                                {block:NoteCount}{NoteCountWithLabel} -{/block:NoteCount}<a href="{Permalink}">Permalink</a>
+                            </p>
+                            
+                            {block:HasTags}
+                            <ul class="tags">
+                                {block:Tags} 
+                                 <li><a href="{TagURL}">#{Tag}</a></li>
+                                {/block:Tags}
+                            </ul>
+                            {/block:HasTags}
+                        </footer>
+                    <!-- END ANSWER POST -->    
+                    {/block:Answer}
+
+
+                <!-- BEGIN NOTES -->
+                    {block:PostNotes} 
+                        {PostNotes-16}
+                    {/block:PostNotes}
+                <!-- END NOTES -->
+                
+                
+                    </li>
+                {/block:Posts}
+                </ul>
+                <!-- END POSTS --> 
+        
+        
+                <!-- CONTENT FOOTER -->
+                <footer id="footer">
+                    {block:PreviousPage}<a href="{PreviousPage}">&#8592;</a>{/block:PreviousPage}
+                    
+                    {block:NextPage}<a href="{NextPage}">&#8594;</a>{/block:NextPage}
+                    
+                    {block:PermalinkPagination} 
+                        {block:PreviousPost}<a href="{PreviousPost}">&#8592;</a>{/block:PreviousPost}
+             
+                        {block:NextPost}<a href="{NextPost}">&#8594;</a>{/block:NextPost} 
+                    {/block:PermalinkPagination}
+
+                    <p class="details"><a href="http://fatalitytheme.tumblr.com">Fatality Theme</a></p>
+                </footer>
+
+    <!-- END MAIN CONTENT -->
+    </section>
+
+    <!-- END MAIN CONTAINER -->    
+    </main>
+    </body>
+</html>
+
+<!-- MASONRY -->
+<script>
+    var masonryContainer = document.querySelector('#posts');
+
+    var msnry = new Masonry(masonryContainer, {
+      itemSelector: '.post',
+      columnWidth: '.post',
+      gutter: 10,
+      percentPosition: true
+    }
+    );
+
+    imagesLoaded(masonryContainer).on('progress', function(){
+      msnry.layout();
+    }
+    );
+</script>
