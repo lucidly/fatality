@@ -10,8 +10,8 @@
 
 
         <!-- Masonry: http://masonry.desandro.com/ -->
-        <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
-        <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+        <script src="http://static.tumblr.com/po91zoo/Bzjo8zf25/masonry.pkgd.min.js"></script>
+        <script src="http://static.tumblr.com/po91zoo/fQKo8zf24/imagesloaded.pkgd.min.js"></script>
         
         <meta name="TitleColor" content="#818080"/>
         <meta name="AccentColor" content="#a5a1a1"/>
@@ -497,7 +497,7 @@
                     {block:Photo}
                     <!-- PHOTO POST -->
                         <li class="post photo">
-                            <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+                            {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>{LinkCloseTag}
 
                             {block:IndexPage}   
                             <div class="hover">   
@@ -537,7 +537,7 @@
                     {block:Panorama}
                     <!-- PANORAMA POST -->    
                         <li class="post panorama">
-                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />
+                            {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
 
                             {block:IndexPage}   
                             <div class="hover">   
@@ -577,7 +577,7 @@
                     {block:Photoset}
                     <!-- PHOTOSET POST -->   
                         <li class="post photoset">
-                            {Photoset}
+                            {LinkOpenTag}{Photoset}{LinkCloseTag}
 
                             {block:Caption}
                             <div class="caption">{Caption}</div>
